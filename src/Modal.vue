@@ -1,18 +1,39 @@
 <template>
   <div class="modal-container">
-    <div class="modal-wrapper">
+    <div class="modal-wrapper" :style="{ textAlign: align }">
+      <!-- header start -->
       <header class="modal-header">
-          <h3 class="modal-title"> {{ title }} </h3>
+          <h3 class="modal-title" v-if="title"> {{ title }} </h3>
           <a href="#" class="modal-close" @click="destroyModal"> &times; </a>
       </header>
+      <!-- header start -->
 
-      <div class="modal-content"> {{ msg }} </div>
 
-      <footer class="modal-footer">
-        <a href="#" class="modal-btn modal-yes-btn"> {{ yesText }}</a>
-        <a href="#" class="modal-btn modal-no-btn"> {{ noText }}</a>
+      <!-- main content start -->
+      <div class="modal-content">
+        <img alt="status icon" :src="icon" v-if="icon">
+        <p> {{ msg }} </p>
+      </div>
+      <!-- main content end -->
+
+
+      <!-- footer start -->
+      <footer class="modal-footer" :style="{ justifyContent: align }">
+        <a href="#" class="modal-btn modal-yes-btn"
+          :style="{ flex: yesBtnFlex }"
+          @click="onClickYesBtn"> 
+          {{ yesBtnText }}
+        </a>
+
+        <a href="#" class="modal-btn modal-no-btn"
+          v-if="needNoBtn"
+          @click="onClickNoBtn">
+          {{ noBtnText }}
+        </a>
       </footer>
+      <!-- footer end -->
     </div>
+
     <div class="modal-mask" @click="destroyModal"></div>
   </div>
 </template>
@@ -21,8 +42,17 @@
 export default {
   data() {
     return {
-      yesText: 'OK',
-      noText: 'NO',
+      yesBtnText: 'OK',
+      noBtnText: 'NO',
+      needNoBtn: false,
+      align: 'left',
+      autoCloseTimeout: 0,
+    }
+  },
+
+  computed: {
+    yesBtnFlex() {
+      return this.needNoBtn ? 'none' : 1
     }
   },
 
@@ -34,6 +64,16 @@ export default {
     onClickCloseNoBtn() {
       this.destroyModal()
     },
+
+    autoCloseModal() {
+      if (this.autoCloseTimeout <= 0) return
+
+      setTimeout(this.destroyModal, this.autoCloseTimeout)
+    }
+  },
+
+  ready() {
+    this.autoCloseModal()
   },
 }  
 </script>
@@ -46,9 +86,7 @@ export default {
   width: 100%;
   height: 100%;
 
-  /* design draft */
   background:rgba(0,0,0,0.30);
-  font-family: MicrosoftYaHei;
   z-index: 9998;
 }
 
@@ -59,7 +97,6 @@ export default {
   transform: translate(-50%);
   z-index: 9999;
 
-  /* design draft */
   background:#fff;
   box-shadow: 0px 2px 40px 0px rgba(0,0,0,0.40);
   border-radius: 2px;
@@ -69,24 +106,21 @@ export default {
 }
 
 .modal-header {
-  /* design draft */
-  border-bottom: 1px solid #ddd;
-  padding: 20px 0 10px 0;
-
   display: flex;
   justify-content: space-between;
 }
 
 .modal-title {
-  /* design draft */
   font-size: 18px;
   color: #656b79;
   line-height: 20px;
+  border-bottom: 1px solid #ddd;
 
   margin: 0;
+  padding: 20px 0 10px 0;
+  width: 100%;
 }
 .modal-close {
-  /* design draft */
   font-size: 24px;
   color: #999999;
 
@@ -97,16 +131,16 @@ export default {
 }
 
 .modal-content {
-  /* design draft */
   font-size: 16px;
   color: #313742;
   line-height: 16px;
 
-  padding: 20px 14px;
+  padding: 34px 14px 24px 14px;
 }
 
 .modal-footer {
   padding: 0 14px 24px 14px;
+  display: flex;
 }
 
 .modal-btn {
