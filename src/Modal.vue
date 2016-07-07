@@ -18,16 +18,16 @@
 
 
       <!-- footer start -->
-      <footer class="modal-footer" :style="{ justifyContent: align }">
+      <footer class="modal-footer">
         <a href="#" class="modal-btn modal-yes-btn"
           :style="{ flex: yesBtnFlex }"
-          @click="onClickYesBtn"> 
+          @click="clickYesBtn"> 
           {{ yesBtnText }}
         </a>
 
         <a href="#" class="modal-btn modal-no-btn"
           v-if="needNoBtn"
-          @click="onClickNoBtn">
+          @click="clickNoBtn">
           {{ noBtnText }}
         </a>
       </footer>
@@ -42,11 +42,20 @@
 export default {
   data() {
     return {
-      yesBtnText: 'OK',
+      title: '',
+      msg: '',
+      icon: '',
+
+      align: 'left',  // left, center, right
+      autoCloseTimeout: 0, // auto close modal in mile second
+
+      needNoBtn: false, // display no btn
+      needCloseBtn: true, // display close btn
+      yesBtnText: 'YES',
       noBtnText: 'NO',
-      needNoBtn: false,
-      align: 'left',
-      autoCloseTimeout: 0,
+
+      onClickYesBtn: () => ({}), // yes btn click handler
+      onClickNoBtn: () => ({}), // no btn click handler
     }
   },
 
@@ -58,17 +67,23 @@ export default {
 
   methods: {
     destroyModal() {
-      this.$el.remove()
-    },
-
-    onClickCloseNoBtn() {
-      this.destroyModal()
+      this.$destroy(true)
     },
 
     autoCloseModal() {
       if (this.autoCloseTimeout <= 0) return
 
       setTimeout(this.destroyModal, this.autoCloseTimeout)
+    },
+
+    clickYesBtn() {
+      this.onClickYesBtn()
+      this.destroyModal()
+    },
+
+    clickNoBtn() {
+      this.onClickNoBtn()
+      this.destroyModal()
     }
   },
 
@@ -150,6 +165,7 @@ export default {
   border-radius:2px;
   color: #fff;
   font-size: 14px;
+  text-align: center;
 }
 .modal-yes-btn {
   background: #2bb56f;
