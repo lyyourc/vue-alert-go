@@ -6,7 +6,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: 'build.js',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
   },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules'),
