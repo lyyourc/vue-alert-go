@@ -1,9 +1,9 @@
-import vueModal from '../src'
+import vueAlert from '../src'
 import correctIcon from './correct.svg'
 
 document.querySelector('.basic')
   .addEventListener('click', () => {
-    vueModal({
+    vueAlert({
       title: 'OverWatch',
       msg: 'The World Needs Heros',
     })
@@ -11,7 +11,7 @@ document.querySelector('.basic')
 
 document.querySelector('.align')
   .addEventListener('click', () => {
-    vueModal({
+    vueAlert({
       title: 'OverWatch',
       msg: 'The World Needs Heros',
       align: 'center',
@@ -20,7 +20,7 @@ document.querySelector('.align')
 
 document.querySelector('.icon')
   .addEventListener('click', () => {
-    vueModal({
+    vueAlert({
       msg: 'The World Needs Heros',
       align: 'center',
       icon: correctIcon,
@@ -29,7 +29,7 @@ document.querySelector('.icon')
 
 document.querySelector('.handler')
   .addEventListener('click', () => {
-    vueModal({
+    vueAlert({
       msg: 'The World Needs Heros',
       align: 'center',
       needNoBtn: true,
@@ -41,7 +41,7 @@ document.querySelector('.handler')
 
 document.querySelector('.style')
   .addEventListener('click', () => {
-    vueModal({
+    vueAlert({
       title: 'OverWatch',
       msg: 'The World Needs Heros',
       style: {

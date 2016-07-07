@@ -1,6 +1,6 @@
 {
-  "name": "vue-modal",
-  "description": "a vue modal component",
+  "name": "vue-alert",
+  "description": "a vue alert component",
   "author": "Drake Leung <drakeleung42@gmail.com>",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot",

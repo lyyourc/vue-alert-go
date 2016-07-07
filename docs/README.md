@@ -1,13 +1,13 @@
-# Vue-Modal
-a modal component for vue.js
+# Vue-Alert
+a alert component for vue.js
 
 ## Basic
 only `title` and `msg`.
 
 ```javascript
-import vueModal from '../src'
+import vueAlert from '../src'
 
-vueModal({
+vueAlert({
   title: 'OverWatch',
   msg: 'The World Needs Heros',
 })
@@ -20,7 +20,7 @@ vueModal({
 you can specify the `align` property to align text.
 
 ```javascript
-vueModal({
+vueAlert({
   title: 'OverWatch',
   msg: 'The World Needs Heros',
   align: 'center', // add this!
@@ -36,7 +36,7 @@ specify status icon via `icon` property.
 ```javascript
 import correctIcon from './correct.svg'
 
-vueModal({
+vueAlert({
   msg: 'The World Needs Heros',
   align: 'center', 
   icon: correctIcon, // add this!
@@ -50,7 +50,7 @@ vueModal({
 If you like, you can add some listeners for some events.
 
 ```javascript
-vueModal({
+vueAlert({
   msg: 'The World Needs Heros',
   align: 'center',
   needNoBtn: true,

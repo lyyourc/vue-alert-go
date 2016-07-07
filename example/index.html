@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Vue-Modal Example</title>
+  <title>Vue-Alert Example</title>
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
@@ -17,11 +17,11 @@
     </p>
 
     <pre>
-  import vueModal from '../src'
+  import vueAlert from '../src'
 
   document.querySelector('.basic')
     .addEventListener('click', e => {
-      vueModal({
+      vueAlert({
         title: 'OverWatch',
         msg: 'The World Needs Heros',
       })
@@ -42,7 +42,7 @@
     <pre>
   document.querySelector('.align')
     .addEventListener('click', () => {
-      vueModal({
+      vueAlert({
         title: 'OverWatch',
         msg: 'The World Needs Heros',
         align: 'center',
@@ -66,7 +66,7 @@
 
   document.querySelector('.icon')
     .addEventListener('click', () => {
-      vueModal({
+      vueAlert({
         msg: 'The World Needs Heros',
         align: 'center',
         icon: correctIcon,
@@ -88,7 +88,7 @@
     <pre>
   document.querySelector('.handler')
     .addEventListener('click', () => {
-      vueModal({
+      vueAlert({
         msg: 'The World Needs Heros',
         align: 'center',
         needNoBtn: true,
@@ -113,7 +113,7 @@
     <pre>
   document.querySelector('.style')
     .addEventListener('click', () => {
-      vueModal({
+      vueAlert({
         title: 'OverWatch',
         msg: 'The World Needs Heros',
         style: {

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Modal from './Modal.vue'
+import Alert from './Alert.vue'
 
 module.exports = (
   options = {}
@@ -11,7 +11,7 @@ module.exports = (
     icon: '',
 
     align: 'left',  // left, center, right
-    autoCloseTimeout: 0, // auto close modal in mile second
+    autoCloseTimeout: 0, // auto close alert in mile second
     style: {
       padding: '20px',
       yesBtnColor: '',
@@ -27,11 +27,11 @@ module.exports = (
     onClickNoBtn: () => ({}), // no btn click handler
   }
 
-  const ModalConstructor = Vue.extend(Modal)
-  const modal = new ModalConstructor({
+  const AlertConstructor = Vue.extend(Alert)
+  const alert = new AlertConstructor({
     data: Object.assign(defaults, options),
   })
 
-  // append modal compoent to `body`
-  modal.$mount().$appendTo('body')
+  // append alert compoent to `body`
+  alert.$mount().$appendTo('body')
 }

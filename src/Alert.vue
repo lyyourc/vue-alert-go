@@ -1,32 +1,32 @@
 <template>
-  <div class="modal-container">
-    <div class="modal-wrapper"
+  <div class="alert-container">
+    <div class="alert-wrapper"
       :style="{ textAlign: align, padding: style.padding, background: style.background }">
       <!-- header start -->
-      <header class="modal-header">
-          <h3 class="modal-title" v-if="title"> {{ title }} </h3>
-          <a href="#" class="modal-close" @click="destroyModal"> &times; </a>
+      <header class="alert-header">
+          <h3 class="alert-title" v-if="title"> {{ title }} </h3>
+          <a href="#" class="alert-close" @click="destroyAlert"> &times; </a>
       </header>
       <!-- header start -->
 
 
       <!-- main content start -->
-      <div class="modal-content">
-        <img alt="status icon" class="modal-icon" :src="icon" v-if="icon">
-        <p class="modal-msg"> {{ msg }} </p>
+      <div class="alert-content">
+        <img alt="status icon" class="alert-icon" :src="icon" v-if="icon">
+        <p class="alert-msg"> {{ msg }} </p>
       </div>
       <!-- main content end -->
 
 
       <!-- footer start -->
-      <footer class="modal-footer" :style="{ justifyContent: align }">
-        <a href="#" class="modal-btn modal-yes-btn"
+      <footer class="alert-footer" :style="{ justifyContent: align }">
+        <a href="#" class="alert-btn alert-yes-btn"
           :style="{ flex: yesBtnFlex, background: style.yesBtnColor }"
           @click="clickYesBtn"> 
           {{ yesBtnText }}
         </a>
 
-        <a href="#" class="modal-btn modal-no-btn"
+        <a href="#" class="alert-btn alert-no-btn"
           v-if="needNoBtn"
           @click="clickNoBtn">
           {{ noBtnText }}
@@ -35,7 +35,7 @@
       <!-- footer end -->
     </div>
 
-    <div class="modal-mask" @click="destroyModal"></div>
+    <div class="alert-mask" @click="destroyAlert"></div>
   </div>
 </template>
 
@@ -48,7 +48,7 @@ export default {
       icon: '',
 
       align: 'left',  // left, center, right
-      autoCloseTimeout: 0, // auto close modal in mile second
+      autoCloseTimeout: 0, // auto close alert in mile second
       style: {
         padding: '20px',
         yesBtnColor: '',
@@ -72,35 +72,35 @@ export default {
   },
 
   methods: {
-    destroyModal() {
+    destroyAlert() {
       this.$destroy(true)
     },
 
-    autoCloseModal() {
+    autoCloseAlert() {
       if (this.autoCloseTimeout <= 0) return
 
-      setTimeout(this.destroyModal, this.autoCloseTimeout)
+      setTimeout(this.destroyAlert, this.autoCloseTimeout)
     },
 
     clickYesBtn() {
       this.onClickYesBtn()
-      this.destroyModal()
+      this.destroyAlert()
     },
 
     clickNoBtn() {
       this.onClickNoBtn()
-      this.destroyModal()
+      this.destroyAlert()
     }
   },
 
   ready() {
-    this.autoCloseModal()
+    this.autoCloseAlert()
   },
 }  
 </script>
 
 <style scoped>
-.modal-mask {
+.alert-mask {
   position: fixed;
   top: 0;
   left: 0;
@@ -111,7 +111,7 @@ export default {
   z-index: 9998;
 }
 
-.modal-wrapper {
+.alert-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -125,12 +125,12 @@ export default {
   min-width: 300px;
 }
 
-.modal-header {
+.alert-header {
   display: flex;
   justify-content: space-between;
 }
 
-.modal-title {
+.alert-title {
   font-size: 18px;
   color: #656b79;
   line-height: 20px;
@@ -140,7 +140,7 @@ export default {
   padding: 0 0 10px 0;
   width: 100%;
 }
-.modal-close {
+.alert-close {
   font-size: 24px;
   color: #999999;
 
@@ -150,7 +150,7 @@ export default {
   right: 13px;
 }
 
-.modal-content {
+.alert-content {
   font-size: 16px;
   color: #313742;
   line-height: 16px;
@@ -158,20 +158,20 @@ export default {
   padding: 14px 14px 24px 14px;
 }
 
-.modal-icon {
+.alert-icon {
   display: inline-block;
   margin: 0 0 24px 0;
 }
-.modal-msg {
+.alert-msg {
   margin: 0;
 }
 
-.modal-footer {
+.alert-footer {
   padding: 0 14px 10px 14px;
   display: flex;
 }
 
-.modal-btn {
+.alert-btn {
   display: inline-block;
   text-decoration: none;
   padding: 10px 30px;
@@ -180,11 +180,11 @@ export default {
   font-size: 14px;
   text-align: center;
 }
-.modal-yes-btn {
+.alert-yes-btn {
   background: #2bb56f;
   margin-right: 10px;
 }
-.modal-no-btn {
+.alert-no-btn {
   background: #999da7
 }
 </style>
