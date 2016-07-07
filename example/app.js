@@ -38,3 +38,16 @@ document.querySelector('.handler')
       },
     })
   })
+
+document.querySelector('.style')
+  .addEventListener('click', () => {
+    vueModal({
+      title: 'OverWatch',
+      msg: 'The World Needs Heros',
+      style: {
+        padding: '5px',
+        yesBtnColor: '#4993e5',
+        background: '#abc',
+      },
+    })
+  })

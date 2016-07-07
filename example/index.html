@@ -3,80 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <title>Vue-Modal Example</title>
+  <link rel="stylesheet" href="app.css">
 </head>
 <body>
-  <section>
-    <h3> # Basic </h3>
+  <section class="items">
+    <h3 class="title">
+       # Basic 
+      <small> <button class="basic"> Run </button> </small>
+    </h3>
 
     <p>
       basic example with `title`, `msg`
-      <small> <button class="basic"> Run </button> </small>
     </p>
 
     <pre>
-      import vueModal from '../src'
+  import vueModal from '../src'
 
-      document.querySelector('.basic')
-        .addEventListener('click', e => {
-          vueModal({
-            title: 'OverWatch',
-            msg: 'The World Needs Heros',
-          })
-        })   
+  document.querySelector('.basic')
+    .addEventListener('click', e => {
+      vueModal({
+        title: 'OverWatch',
+        msg: 'The World Needs Heros',
+      })
+    })   
     </pre>
   </section>
 
-  <section>
-    <h3> # Align </h3>
+  <section class="items">
+    <h3 class="title">
+      # Align
+      <small> <button class="align"> Run </button> </small>
+    </h3>
 
     <p>
       We can align the text align direction
-      <small> <button class="align"> Run </button> </small>
     </p>
 
     <pre>
-      document.querySelector('.align')
-        .addEventListener('click', () => {
-          vueModal({
-            title: 'OverWatch',
-            msg: 'The World Needs Heros',
-            align: 'center',
-          })
-        })
+  document.querySelector('.align')
+    .addEventListener('click', () => {
+      vueModal({
+        title: 'OverWatch',
+        msg: 'The World Needs Heros',
+        align: 'center',
+      })
+    })
     </pre>
   </section>
 
-  <section>
-    <h3> # Icon </h3>
+  <section class="items">
+    <h3 class="title"> 
+      # Icon 
+      <small> <button class="icon"> Run </button> </small>
+    </h3>
 
     <p>
       Specify status icon via `icon` property
-      <small> <button class="icon"> Run </button> </small>
     </p>
 
     <pre>
-      import correctIcon from './correct.svg'
+  import correctIcon from './correct.svg'
 
-      document.querySelector('.icon')
-        .addEventListener('click', () => {
-          vueModal({
-            msg: 'The World Needs Heros',
-            align: 'center',
-            icon: correctIcon,
-          })
-        })
+  document.querySelector('.icon')
+    .addEventListener('click', () => {
+      vueModal({
+        msg: 'The World Needs Heros',
+        align: 'center',
+        icon: correctIcon,
+      })
+    })
     </pre>
   </section>
 
-  <section>
-    <h3> # Handler </h3>
+  <section class="items">
+    <h3 title="title"> 
+      # Handler 
+      <small> <button class="handler"> Run </button> </small>
+    </h3>
 
     <p>
       Call a function after clicking the *yes btn*.
-      <small> <button class="handler"> Run </button> </small>
     </p>
 
     <pre>
+  document.querySelector('.handler')
+    .addEventListener('click', () => {
+      vueModal({
+        msg: 'The World Needs Heros',
+        align: 'center',
+        needNoBtn: true,
+        onClickYesBtn() {
+          console.log('Hello World')
+        },
+      })
+    })
+    </pre>
+  </section>
+
+  <section class="items">
+    <h3 class="title"> 
+      # Style 
+      <small> <button class="style"> Run </button> </small>
+    </h3>
+    
+    <p>
+      change some default styles
+    </p>
+
+    <pre>
+  document.querySelector('.style')
+    .addEventListener('click', () => {
+      vueModal({
+        title: 'OverWatch',
+        msg: 'The World Needs Heros',
+        style: {
+          padding: '5px',
+          yesBtnColor: '#4993e5',
+        },
+      })
+    })
     </pre>
   </section>
   <script src="dist/build.js"></script> 

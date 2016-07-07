@@ -12,6 +12,11 @@ module.exports = (
 
     align: 'left',  // left, center, right
     autoCloseTimeout: 0, // auto close modal in mile second
+    style: {
+      padding: '20px',
+      yesBtnColor: '',
+      background: '#fff',
+    },
 
     needNoBtn: false, // display no btn
     needCloseBtn: true, // display close btn

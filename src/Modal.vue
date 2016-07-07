@@ -1,6 +1,7 @@
 <template>
   <div class="modal-container">
-    <div class="modal-wrapper" :style="{ textAlign: align }">
+    <div class="modal-wrapper"
+      :style="{ textAlign: align, padding: style.padding, background: style.background }">
       <!-- header start -->
       <header class="modal-header">
           <h3 class="modal-title" v-if="title"> {{ title }} </h3>
@@ -11,16 +12,16 @@
 
       <!-- main content start -->
       <div class="modal-content">
-        <img alt="status icon" :src="icon" v-if="icon">
-        <p> {{ msg }} </p>
+        <img alt="status icon" class="modal-icon" :src="icon" v-if="icon">
+        <p class="modal-msg"> {{ msg }} </p>
       </div>
       <!-- main content end -->
 
 
       <!-- footer start -->
-      <footer class="modal-footer">
+      <footer class="modal-footer" :style="{ justifyContent: align }">
         <a href="#" class="modal-btn modal-yes-btn"
-          :style="{ flex: yesBtnFlex }"
+          :style="{ flex: yesBtnFlex, background: style.yesBtnColor }"
           @click="clickYesBtn"> 
           {{ yesBtnText }}
         </a>
@@ -48,6 +49,11 @@ export default {
 
       align: 'left',  // left, center, right
       autoCloseTimeout: 0, // auto close modal in mile second
+      style: {
+        padding: '20px',
+        yesBtnColor: '',
+        background: '#fff',
+      },
 
       needNoBtn: false, // display no btn
       needCloseBtn: true, // display close btn
@@ -117,7 +123,6 @@ export default {
   border-radius: 2px;
 
   min-width: 300px;
-  padding: 0 20px;
 }
 
 .modal-header {
@@ -132,7 +137,7 @@ export default {
   border-bottom: 1px solid #ddd;
 
   margin: 0;
-  padding: 20px 0 10px 0;
+  padding: 0 0 10px 0;
   width: 100%;
 }
 .modal-close {
@@ -150,11 +155,19 @@ export default {
   color: #313742;
   line-height: 16px;
 
-  padding: 34px 14px 24px 14px;
+  padding: 14px 14px 24px 14px;
+}
+
+.modal-icon {
+  display: inline-block;
+  margin: 0 0 24px 0;
+}
+.modal-msg {
+  margin: 0;
 }
 
 .modal-footer {
-  padding: 0 14px 24px 14px;
+  padding: 0 14px 10px 14px;
   display: flex;
 }
 
