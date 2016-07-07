@@ -1,5 +1,7 @@
 {
-  "name": "vue-alert",
+  "name": "vue-alert-go",
+  "version": "0.0.1",
+  "main": "dist/build.js",
   "description": "a vue alert component",
   "author": "Drake Leung <drakeleung42@gmail.com>",
   "scripts": {
