@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+examples/
+docs/
+.eslintrc.js
+.babelrc
+webpack.config.js
+webpack.example.js
