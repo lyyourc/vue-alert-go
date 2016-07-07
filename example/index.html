@@ -5,7 +5,80 @@
   <title>Vue-Modal Example</title>
 </head>
 <body>
-  <button>Click Me</button>
+  <section>
+    <h3> # Basic </h3>
+
+    <p>
+      basic example with `title`, `msg`
+      <small> <button class="basic"> Run </button> </small>
+    </p>
+
+    <pre>
+      import vueModal from '../src'
+
+      document.querySelector('.basic')
+        .addEventListener('click', e => {
+          vueModal({
+            title: 'OverWatch',
+            msg: 'The World Needs Heros',
+          })
+        })   
+    </pre>
+  </section>
+
+  <section>
+    <h3> # Align </h3>
+
+    <p>
+      We can align the text align direction
+      <small> <button class="align"> Run </button> </small>
+    </p>
+
+    <pre>
+      document.querySelector('.align')
+        .addEventListener('click', () => {
+          vueModal({
+            title: 'OverWatch',
+            msg: 'The World Needs Heros',
+            align: 'center',
+          })
+        })
+    </pre>
+  </section>
+
+  <section>
+    <h3> # Icon </h3>
+
+    <p>
+      Specify status icon via `icon` property
+      <small> <button class="icon"> Run </button> </small>
+    </p>
+
+    <pre>
+      import correctIcon from './correct.svg'
+
+      document.querySelector('.icon')
+        .addEventListener('click', () => {
+          vueModal({
+            msg: 'The World Needs Heros',
+            align: 'center',
+            icon: correctIcon,
+          })
+        })
+    </pre>
+  </section>
+
+  <section>
+    <h3> # Handler </h3>
+
+    <p>
+      Call a function after clicking the *yes btn*.
+      <small> <button class="handler"> Run </button> </small>
+    </p>
+
+    <pre>
+    </pre>
+  </section>
   <script src="dist/build.js"></script> 
 </body>
 </html>
