@@ -4,7 +4,8 @@
   "author": "Drake Leung <drakeleung42@gmail.com>",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "example": "webpack-dev-server --config ./webpack.example.js --inline --hot"
   },
   "dependencies": {
     "vue": "^1.0.0",
