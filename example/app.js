@@ -47,7 +47,7 @@ document.querySelector('.style')
       style: {
         padding: '5px',
         yesBtnColor: '#4993e5',
-        background: '#abc',
+        background: '#FCDEED',
       },
     })
   })

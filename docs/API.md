@@ -2,6 +2,8 @@
 `vueAlert` is just a function, you can pass an optional `object` as params.
 
 ```javascript
+import vueAlert from 'path/to/vue-alert-go`
+
 const options = {
   title: 'OverWatch',
 }

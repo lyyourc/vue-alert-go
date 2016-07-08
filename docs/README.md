@@ -1,5 +1,7 @@
-# Vue-Alert
-a alert component for vue.js
+# vue-alert-go
+More Details in [api docs](./API.md) :)
+
+Some examples are following:
 
 ## Basic
 only `title` and `msg`.
@@ -47,7 +49,7 @@ vueAlert({
 
 
 ## Handler
-If you like, you can add some listeners for some events.
+If you like, you can add some listeners for some events. e.g. `onClickYesBtn`.
 
 ```javascript
 vueAlert({
@@ -62,3 +64,19 @@ vueAlert({
 
 ![click yes btn](./screenshots/handler2.png)
 ![handler result](./screenshots/handler1.png)
+
+
+## Style
+Customize some default styles by `style` prop.
+
+```javascript
+vueAlert({
+  title: 'OverWatch',
+  msg: 'The World Needs Heros',
+  style: {
+    padding: '5px',
+    yesBtnColor: '#4993e5',
+  }, // add this
+})
+```
+![style](./screenshots/style.png)
