@@ -16,6 +16,7 @@ vueAlert(options)
 | -----       | ----      | ----      | ----        |
 | align       | String    | 'left'    | text align  |
 | animate    | String   | 'fade'      | [animation](#animate) of in and out |
+| animateDuration| String | '0.2s'     | animation duration |
 | autoCloseTimeout | Number | 0       | if `<= 0` wont autoclose |
 | icon        | String    | ''        | status icon |
 | msg         | String    | ''        | alert message     |

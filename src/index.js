@@ -18,6 +18,7 @@ module.exports = (
       background: '#fff',
     },
     animate: 'fade',
+    animateDuration: '0.2s',
 
     needNoBtn: false, // display no btn
     needCloseBtn: true, // display close btn

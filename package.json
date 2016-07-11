@@ -1,13 +1,14 @@
 {
   "name": "vue-alert-go",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "main": "dist/build.js",
   "description": "a vue alert component",
   "author": "Drake Leung <drakeleung42@gmail.com>",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "example": "webpack-dev-server --config ./webpack.example.js --inline --hot"
+    "example": "webpack-dev-server --config ./webpack.example.js --inline --hot",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "vue": "^1.0.0",

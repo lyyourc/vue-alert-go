@@ -1,11 +1,14 @@
 <template>
-  <div class="alert-go-container" :transition="animate">
+  <div class="alert-go-container"
+    :style="{ transition: `all ${animateDuration} ease` }"
+    :transition="animate">
     <div class="alert-go-wrapper"
-      :style="{ textAlign: align }">
+      :style="{ textAlign: align, transition: `all ${animateDuration} ease` }">
       <div class="alert-go-body"
         :style="{ 
           padding: style.padding,
-          background: style.background
+          background: style.background,
+          transition: `all ${animateDuration} ease`
         }">
         <!-- header start -->
         <header class="alert-go-header">
@@ -61,6 +64,7 @@ export default {
         background: '#fff',
       },
       animate: 'fade',
+      animateDuration: '.2s',
 
       needNoBtn: false, // display no btn
       needCloseBtn: true, // display close btn
@@ -107,6 +111,14 @@ export default {
 </script>
 
 <style scoped>
+.alert-go-container {
+  /* 
+    if other element set `z-index`, 
+    it will cauze a white empty flash
+  */
+  position: relative;
+  z-index: 9999;
+}
 .alert-go-mask {
   position: fixed;
   top: 0;
@@ -199,17 +211,11 @@ export default {
 }
 
 /* animations */
-.alert-go-wrapper,
-.alert-go-body {
-  transition: all 1s ease;
-}
-
-/* fade start */
-.fade-transition {
-  transition: all 1s ease;
+.alert-go-container {
   opacity: 1;
 }
 
+/* fade start */
 .fade-enter,
 .fade-leave {
   opacity: 0;
@@ -217,11 +223,6 @@ export default {
 /* fade end */
 
 /* bound start */
-.bound-transition {
-  transition: all 1s ease;
-  opacity: 1;
-}
-
 .bound-enter,
 .bound-leave {
   opacity: 0;
@@ -234,11 +235,6 @@ export default {
 /* bound end */
 
 /* slide start */
-.slide-transition {
-  transition: all 1s ease;
-  opacity: 1;
-}
-
 .slide-enter,
 .slide-leave {
   opacity: 0;
