@@ -1,38 +1,44 @@
 <template>
-  <div class="alert-container">
+  <div class="alert-container" :transition="animate">
     <div class="alert-wrapper"
-      :style="{ textAlign: align, padding: style.padding, background: style.background }">
-      <!-- header start -->
-      <header class="alert-header">
-          <h3 class="alert-title" v-if="title"> {{ title }} </h3>
-          <a href="#" class="alert-close" @click="destroyAlert"> &times; </a>
-      </header>
-      <!-- header start -->
+      :style="{ textAlign: align }">
+      <div class="alert-body"
+        :style="{ 
+          padding: style.padding,
+          background: style.background
+        }">
+        <!-- header start -->
+        <header class="alert-header">
+            <h3 class="alert-title" v-if="title"> {{ title }} </h3>
+            <a href="#" class="alert-close" @click="destroyAlert"> &times; </a>
+        </header>
+        <!-- header start -->
 
 
-      <!-- main content start -->
-      <div class="alert-content">
-        <img alt="status icon" class="alert-icon" :src="icon" v-if="icon">
-        <p class="alert-msg"> {{ msg }} </p>
+        <!-- main content start -->
+        <div class="alert-content">
+          <img alt="status icon" class="alert-icon" :src="icon" v-if="icon">
+          <p class="alert-msg"> {{ msg }} </p>
+        </div>
+        <!-- main content end -->
+
+
+        <!-- footer start -->
+        <footer class="alert-footer" :style="{ justifyContent: align }">
+          <a href="#" class="alert-btn alert-yes-btn"
+            :style="{ flex: yesBtnFlex, background: style.yesBtnColor }"
+            @click="clickYesBtn"> 
+            {{ yesBtnText }}
+          </a>
+
+          <a href="#" class="alert-btn alert-no-btn"
+            v-if="needNoBtn"
+            @click="clickNoBtn">
+            {{ noBtnText }}
+          </a>
+        </footer>
+        <!-- footer end -->
       </div>
-      <!-- main content end -->
-
-
-      <!-- footer start -->
-      <footer class="alert-footer" :style="{ justifyContent: align }">
-        <a href="#" class="alert-btn alert-yes-btn"
-          :style="{ flex: yesBtnFlex, background: style.yesBtnColor }"
-          @click="clickYesBtn"> 
-          {{ yesBtnText }}
-        </a>
-
-        <a href="#" class="alert-btn alert-no-btn"
-          v-if="needNoBtn"
-          @click="clickNoBtn">
-          {{ noBtnText }}
-        </a>
-      </footer>
-      <!-- footer end -->
     </div>
 
     <div class="alert-mask" @click="destroyAlert"></div>
@@ -54,6 +60,7 @@ export default {
         yesBtnColor: '',
         background: '#fff',
       },
+      animate: 'fade',
 
       needNoBtn: false, // display no btn
       needCloseBtn: true, // display close btn
@@ -112,17 +119,20 @@ export default {
 }
 
 .alert-wrapper {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%);
   z-index: 9999;
 
-  background:#fff;
   box-shadow: 0px 2px 40px 0px rgba(0,0,0,0.40);
   border-radius: 2px;
 
+}
+
+.alert-body {
   min-width: 300px;
+  background:#fff;
 }
 
 .alert-header {
@@ -187,4 +197,57 @@ export default {
 .alert-no-btn {
   background: #999da7
 }
+
+/* animations */
+.alert-wrapper,
+.alert-body {
+  transition: all 1s ease;
+}
+
+/* fade start */
+.fade-transition {
+  transition: all 1s ease;
+  opacity: 1;
+}
+
+.fade-enter,
+.fade-leave {
+  opacity: 0;
+}
+/* fade end */
+
+/* bound start */
+.bound-transition {
+  transition: all 1s ease;
+  opacity: 1;
+}
+
+.bound-enter,
+.bound-leave {
+  opacity: 0;
+}
+
+.bound-enter .alert-body,
+.bound-leave .alert-body {
+  transform: scale(1.2);
+}
+/* bound end */
+
+/* slide start */
+.slide-transition {
+  transition: all 1s ease;
+  opacity: 1;
+}
+
+.slide-enter,
+.slide-leave {
+  opacity: 0;
+}
+
+.slide-enter .alert-wrapper,
+.slide-leave .alert-wrapper {
+  transform: translateY(-1024px);
+}
+/* slide end */
+
 </style>

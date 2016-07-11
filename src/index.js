@@ -17,6 +17,7 @@ module.exports = (
       yesBtnColor: '',
       background: '#fff',
     },
+    animate: 'fade',
 
     needNoBtn: false, // display no btn
     needCloseBtn: true, // display close btn
