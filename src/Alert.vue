@@ -1,37 +1,37 @@
 <template>
-  <div class="alert-container" :transition="animate">
-    <div class="alert-wrapper"
+  <div class="alert-go-container" :transition="animate">
+    <div class="alert-go-wrapper"
       :style="{ textAlign: align }">
-      <div class="alert-body"
+      <div class="alert-go-body"
         :style="{ 
           padding: style.padding,
           background: style.background
         }">
         <!-- header start -->
-        <header class="alert-header">
-            <h3 class="alert-title" v-if="title"> {{ title }} </h3>
-            <a href="#" class="alert-close" @click="destroyAlert"> &times; </a>
+        <header class="alert-go-header">
+            <h3 class="alert-go-title" v-if="title"> {{ title }} </h3>
+            <a href="#" class="alert-go-close" @click="destroyAlert"> &times; </a>
         </header>
         <!-- header start -->
 
 
         <!-- main content start -->
-        <div class="alert-content">
-          <img alt="status icon" class="alert-icon" :src="icon" v-if="icon">
-          <p class="alert-msg"> {{ msg }} </p>
+        <div class="alert-go-content">
+          <img alt="status icon" class="alert-go-icon" :src="icon" v-if="icon">
+          <p class="alert-go-msg"> {{ msg }} </p>
         </div>
         <!-- main content end -->
 
 
         <!-- footer start -->
-        <footer class="alert-footer" :style="{ justifyContent: align }">
-          <a href="#" class="alert-btn alert-yes-btn"
+        <footer class="alert-go-footer" :style="{ justifyContent: align }">
+          <a href="#" class="alert-go-btn alert-go-yes-btn"
             :style="{ flex: yesBtnFlex, background: style.yesBtnColor }"
             @click="clickYesBtn"> 
             {{ yesBtnText }}
           </a>
 
-          <a href="#" class="alert-btn alert-no-btn"
+          <a href="#" class="alert-go-btn alert-go-no-btn"
             v-if="needNoBtn"
             @click="clickNoBtn">
             {{ noBtnText }}
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div class="alert-mask" @click="destroyAlert"></div>
+    <div class="alert-go-mask" @click="destroyAlert"></div>
   </div>
 </template>
 
@@ -107,7 +107,7 @@ export default {
 </script>
 
 <style scoped>
-.alert-mask {
+.alert-go-mask {
   position: fixed;
   top: 0;
   left: 0;
@@ -118,7 +118,7 @@ export default {
   z-index: 9998;
 }
 
-.alert-wrapper {
+.alert-go-wrapper {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -130,17 +130,17 @@ export default {
 
 }
 
-.alert-body {
+.alert-go-body {
   min-width: 300px;
   background:#fff;
 }
 
-.alert-header {
+.alert-go-header {
   display: flex;
   justify-content: space-between;
 }
 
-.alert-title {
+.alert-go-title {
   font-size: 18px;
   color: #656b79;
   line-height: 20px;
@@ -150,7 +150,7 @@ export default {
   padding: 0 0 10px 0;
   width: 100%;
 }
-.alert-close {
+.alert-go-close {
   font-size: 24px;
   color: #999999;
 
@@ -160,7 +160,7 @@ export default {
   right: 13px;
 }
 
-.alert-content {
+.alert-go-content {
   font-size: 16px;
   color: #313742;
   line-height: 16px;
@@ -168,20 +168,20 @@ export default {
   padding: 14px 14px 24px 14px;
 }
 
-.alert-icon {
+.alert-go-icon {
   display: inline-block;
   margin: 0 0 24px 0;
 }
-.alert-msg {
+.alert-go-msg {
   margin: 0;
 }
 
-.alert-footer {
+.alert-go-footer {
   padding: 0 14px 10px 14px;
   display: flex;
 }
 
-.alert-btn {
+.alert-go-btn {
   display: inline-block;
   text-decoration: none;
   padding: 10px 30px;
@@ -190,17 +190,17 @@ export default {
   font-size: 14px;
   text-align: center;
 }
-.alert-yes-btn {
+.alert-go-yes-btn {
   background: #2bb56f;
   margin-right: 10px;
 }
-.alert-no-btn {
+.alert-go-no-btn {
   background: #999da7
 }
 
 /* animations */
-.alert-wrapper,
-.alert-body {
+.alert-go-wrapper,
+.alert-go-body {
   transition: all 1s ease;
 }
 
@@ -227,8 +227,8 @@ export default {
   opacity: 0;
 }
 
-.bound-enter .alert-body,
-.bound-leave .alert-body {
+.bound-enter .alert-go-body,
+.bound-leave .alert-go-body {
   transform: scale(1.2);
 }
 /* bound end */
@@ -244,8 +244,8 @@ export default {
   opacity: 0;
 }
 
-.slide-enter .alert-wrapper,
-.slide-leave .alert-wrapper {
+.slide-enter .alert-go-wrapper,
+.slide-leave .alert-go-wrapper {
   transform: translateY(-1024px);
 }
 /* slide end */
