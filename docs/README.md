@@ -80,3 +80,14 @@ vueAlert({
 })
 ```
 ![style](./screenshots/style.png)
+
+## Animate
+There some 3 types of animation.
+
+```javascript
+vueAlert({
+  title: 'OverWatch',
+  msg: 'The World Needs Heros',
+  animate: 'bound', // fade, bound, slide
+})
+```

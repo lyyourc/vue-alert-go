@@ -12,21 +12,36 @@ vueAlert(options)
 ```
 
 ## Default Options
+| Prop        | Type      | Default   | Description |
+| -----       | ----      | ----      | ----        |
+| align       | String    | 'left'    | text align  |
+| animate    | String   | 'fade'      | [animation](#animate) of in and out |
+| autoCloseTimeout | Number | 0       | if `<= 0` wont autoclose |
+| icon        | String    | ''        | status icon |
+| msg         | String    | ''        | alert message     |
+| needNoBtn   | Boolean   | false     | display no button |
+| needCloseBtn| Boolean   | true      | display close button  |
+| noBtnText   | String    | 'NO'      | no button text |
+| onClickYesBtn | Function |           | call function when clicking yes button |
+| onClickNoBtn | Function |           | call function when clicking no button |
+| style        | Object   | [??](#style)     | customize default styles |
+| title       | String    | ''        |             |
+| yesBtnText  | String    | 'YES'     | yes button text |
+
+### style
+default styles:
+
 ```javascript
 {
-  title: '',
-  msg: '',
-  icon: '',
-
-  align: 'left',  // left, center, right
-  autoCloseTimeout: 0, // auto close alert in mile second
-
-  needNoBtn: false, // display no btn
-  needCloseBtn: true, // display close btn
-  yesBtnText: 'YES',
-  noBtnText: 'NO',
-
-  onClickYesBtn: () => ({}), // yes btn click handler
-  onClickNoBtn: () => ({}), // no btn click handler
+  padding: '20px',
+  yesBtnColor: '',
+  background: '#fff',
 }
 ```
+
+### animate
+There are 3 types of animation: 
+
+- `fade`: opacity transition
+- `bound`: scale transition
+- `slide`: translateY 
