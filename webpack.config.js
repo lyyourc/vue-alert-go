@@ -13,6 +13,14 @@ module.exports = {
   resolveLoader: {
     root: path.join(__dirname, 'node_modules'),
   },
+  externals: {
+    vue: {
+      root: 'Vue',
+      commonjs: 'vue',
+      commonjs2: 'vue',
+      amd: 'vue',
+    },
+  },
 
   vue: {
     postcss: [
