@@ -32,16 +32,17 @@ vueAlert({
 ![align](./screenshots/align.png)
 
 
-## Icon
-specify status icon via `icon` property.
+## Type && Icon
+There are 2 types, each type has its icon. `sccuess`(ok icon) and `error`(error icon).
+
+Besides, you can overrride the default icon, by specifying `icon` property.
 
 ```javascript
-import correctIcon from './correct.svg'
-
+// success
 vueAlert({
+  type: 'success', // or 'error'
   msg: 'The World Needs Heros',
-  align: 'center', 
-  icon: correctIcon, // add this!
+  align: 'center',
 })
 ```
 
@@ -59,6 +60,9 @@ vueAlert({
   onClickYesBtn() {
     console.log('Hello World')
   }, // add this!
+  
+  // onClickNoBtn() {}
+  // cbWhenClickMask() {}
 })
 ```
 
@@ -74,12 +78,15 @@ vueAlert({
   title: 'OverWatch',
   msg: 'The World Needs Heros',
   style: {
-    padding: '5px',
-    yesBtnColor: '#4993e5',
-  }, // add this
+    box: {
+      padding: '5px',
+      borderRadius: '10px',
+      bgColor: '#313131',
+    },
+    textColor: '#fff',
+  },
 })
 ```
-![style](./screenshots/style.png)
 
 ## Animate
 There some 3 types of animation.
