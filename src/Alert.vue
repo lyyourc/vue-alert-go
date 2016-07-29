@@ -68,6 +68,12 @@ import errorIcon from './assets/error.svg'
 import { isFunction } from './utils/util'
 
 export default {
+  data() {
+    return {
+      $$destroyed: false, 
+    }
+  },
+  
   computed: {
     box() {
       return this.style.box
@@ -100,6 +106,7 @@ export default {
       
       isFunction(cbWhenClose) && cbWhenClose()
       this.$destroy(true)
+      this.$$destroyed = true
     },
 
     autoCloseAlert() {

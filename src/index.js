@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import Alert from './Alert.vue'
 
+let instance = null
+
 module.exports = (
   options = {}
 ) => {
+  if (instance && !instance.$$destroyed) return
+
   // default options
   const defaults = {
     title: '',
@@ -13,7 +17,7 @@ module.exports = (
 
     align: 'left',  // left, center, right
     autoCloseTimeout: 0, // auto close alert in mile second
-    animate: 'fade',
+    animate: 'fade', // animation type, [fade, bound, slide]
     animateDuration: '0.2s',
 
     style: {
@@ -39,10 +43,10 @@ module.exports = (
   }
 
   const AlertConstructor = Vue.extend(Alert)
-  const alert = new AlertConstructor({
+  instance = new AlertConstructor({
     data: Object.assign(defaults, options),
   })
 
   // append alert compoent to `body`
-  alert.$mount().$appendTo('body')
+  instance.$mount().$appendTo('body')
 }
