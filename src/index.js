@@ -12,7 +12,7 @@ module.exports = (
   const defaults = {
     title: '',
     msg: '',
-    type: 'default',
+    type: '', // [success, error]
     icon: '',
 
     align: 'left',  // left, center, right

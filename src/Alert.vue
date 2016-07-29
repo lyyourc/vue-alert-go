@@ -86,9 +86,9 @@ export default {
       const { icon, type } = this
 
       if (icon) return this.icon
-      else if (type === 'default') return ''
-      else if (type === 'sccuess') return okIcon
+      else if (type === 'success') return okIcon
       else if (type === 'error') return errorIcon
+      else return ''
     },
 
     yesBtnBg() {
