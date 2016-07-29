@@ -8,30 +8,34 @@ module.exports = (
   const defaults = {
     title: '',
     msg: '',
+    type: 'default',
     icon: '',
 
     align: 'left',  // left, center, right
     autoCloseTimeout: 0, // auto close alert in mile second
+    animate: 'fade',
+    animateDuration: '0.2s',
+
     style: {
       box: {
         padding: '24px 20px',
         borderRadius: '2px',
         bgColor: '#fff',
       },
-      yesBtnBgColor: '',
-      textColor: '#000',
+      yesBtnBgColor: '#2bb56f',
+      textColor: '#656b78',
     },
-    animate: 'fade',
-    animateDuration: '0.2s',
 
+    closeWhenClickMask: true, // click mask && close alert
     needNoBtn: false, // display no btn
     needCloseBtn: false, // display close btn
     needYesBtn: true,
     yesBtnText: 'YES',
     noBtnText: 'NO',
 
-    onClickYesBtn: () => ({}), // yes btn click handler
-    onClickNoBtn: () => ({}), // no btn click handler
+    onClickYesBtn: null, // yes btn click handler
+    onClickNoBtn: null, // no btn click handler
+    cbWhenClose: null, // callback when alert close
   }
 
   const AlertConstructor = Vue.extend(Alert)

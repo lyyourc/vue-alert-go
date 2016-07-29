@@ -6,9 +6,9 @@
       :style="{ textAlign: align, transition: `all ${animateDuration} ease` }">
       <div class="alert-go-body"
         :style="{ 
-          padding: style.box.padding,
-          'border-radius': style.box.borderRadius,
-          background: style.box.bgColor,
+          padding: box.padding,
+          borderRadius: box.borderRadius,
+          background: box.bgColor,
           transition: `all ${animateDuration} ease`
         }">
         <!-- header start -->
@@ -24,7 +24,9 @@
 
         <!-- main content start -->
         <div class="alert-go-content">
-          <img alt="status icon" class="alert-go-icon" :src="icon" v-if="icon">
+          <img alt="status icon" class="alert-go-icon"
+            :src="iconSrc" v-show="iconSrc"
+          >
           <p class="alert-go-msg"
             :style="{ color: style.textColor }"
           > {{ msg }} </p>
@@ -39,7 +41,7 @@
         >
           <a href="#" class="alert-go-btn alert-go-yes-btn"
             v-show="needYesBtn"
-            :style="{ flex: yesBtnFlex, background: style.yesBtnBgColor }"
+            :style="{ flex: yesBtnFlex, background: yesBtnBg }"
             @click="clickYesBtn">
             {{ yesBtnText }}
           </a>
@@ -54,20 +56,49 @@
       </div>
     </div>
 
-    <div class="alert-go-mask" @click="destroyAlert"></div>
+    <div class="alert-go-mask"
+      @click="closeWhenClickMask && destroyAlert()">
+    </div>
   </div>
 </template>
 
 <script>
+import okIcon from './assets/ok.svg'
+import errorIcon from './assets/error.svg'
+import { isFunction } from './utils/util'
+
 export default {
   computed: {
+    box() {
+      return this.style.box
+    },
     yesBtnFlex() {
       return this.needNoBtn ? 'none' : 1
-    }
+    },
+
+    iconSrc() {
+      const { icon, type } = this
+
+      if (icon) return this.icon
+      else if (type === 'default') return ''
+      else if (type === 'sccuess') return okIcon
+      else if (type === 'error') return errorIcon
+    },
+
+    yesBtnBg() {
+      const { type, yesBtnBgColor } = this
+
+      if (yesBtnBgColor) return yesBtnBgColor
+      else if (type === 'error') return '#4993e5'
+      else return '#2bb56'
+    },
   },
 
   methods: {
     destroyAlert() {
+      const { cbWhenClose } = this
+      
+      isFunction(cbWhenClose) && cbWhenClose()
       this.$destroy(true)
     },
 
@@ -78,14 +109,18 @@ export default {
     },
 
     clickYesBtn() {
-      this.onClickYesBtn()
+      const { onClickYesBtn } = this
+  
+      isFunction(onClickYesBtn) && onClickYesBtn()
       this.destroyAlert()
     },
 
     clickNoBtn() {
-      this.onClickNoBtn()
+      const { onClickNoBtn } = this
+
+      isFunction(onClickNoBtn) && onClickNoBtn()
       this.destroyAlert()
-    }
+    },
   },
 
   ready() {
@@ -133,8 +168,6 @@ export default {
   left: 50%;
   transform: translate(-50%);
   z-index: 9999;
-
-  box-shadow: 0px 2px 40px 0px rgba(0,0,0,0.40);
 }
 
 
@@ -193,6 +226,7 @@ export default {
 
   & .alert-go-msg {
     margin: 14px 0;
+    color: #656b78;
   }
 }
 
