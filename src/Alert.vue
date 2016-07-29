@@ -6,14 +6,18 @@
       :style="{ textAlign: align, transition: `all ${animateDuration} ease` }">
       <div class="alert-go-body"
         :style="{ 
-          padding: style.padding,
-          background: style.background,
+          padding: style.box.padding,
+          'border-radius': style.box.borderRadius,
+          background: style.box.bgColor,
           transition: `all ${animateDuration} ease`
         }">
         <!-- header start -->
         <header class="alert-go-header">
             <h3 class="alert-go-title" v-if="title"> {{ title }} </h3>
-            <a href="#" class="alert-go-close" @click="destroyAlert"> &times; </a>
+            <a href="#" class="alert-go-close"
+              v-show="needCloseBtn"
+              @click="destroyAlert"
+            > &times; </a>
         </header>
         <!-- header start -->
 
@@ -21,16 +25,22 @@
         <!-- main content start -->
         <div class="alert-go-content">
           <img alt="status icon" class="alert-go-icon" :src="icon" v-if="icon">
-          <p class="alert-go-msg"> {{ msg }} </p>
+          <p class="alert-go-msg"
+            :style="{ color: style.textColor }"
+          > {{ msg }} </p>
         </div>
         <!-- main content end -->
 
 
         <!-- footer start -->
-        <footer class="alert-go-footer" :style="{ justifyContent: align }">
+        <footer class="alert-go-footer"
+          v-show="needYesBtn || needNoBtn "
+          :style="{ justifyContent: align }"
+        >
           <a href="#" class="alert-go-btn alert-go-yes-btn"
-            :style="{ flex: yesBtnFlex, background: style.yesBtnColor }"
-            @click="clickYesBtn"> 
+            v-show="needYesBtn"
+            :style="{ flex: yesBtnFlex, background: style.yesBtnBgColor }"
+            @click="clickYesBtn">
             {{ yesBtnText }}
           </a>
 
@@ -50,32 +60,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      title: '',
-      msg: '',
-      icon: '',
-
-      align: 'left',  // left, center, right
-      autoCloseTimeout: 0, // auto close alert in mile second
-      style: {
-        padding: '20px',
-        yesBtnColor: '',
-        background: '#fff',
-      },
-      animate: 'fade',
-      animateDuration: '.2s',
-
-      needNoBtn: false, // display no btn
-      needCloseBtn: true, // display close btn
-      yesBtnText: 'YES',
-      noBtnText: 'NO',
-
-      onClickYesBtn: () => ({}), // yes btn click handler
-      onClickNoBtn: () => ({}), // no btn click handler
-    }
-  },
-
   computed: {
     yesBtnFlex() {
       return this.needNoBtn ? 'none' : 1
@@ -111,14 +95,22 @@ export default {
 </script>
 
 <style scoped>
+/**
+ * container
+ * 设置 z-index
+ */
 .alert-go-container {
-  /* 
-    if other element set `z-index`, 
-    it will cauze a white empty flash
-  */
+  /* if other element set `z-index` */
+  /* it will cauze a white empty flash */
   position: relative;
   z-index: 9999;
 }
+
+
+/**
+ * mask
+ * 遮罩层
+ */
 .alert-go-mask {
   position: fixed;
   top: 0;
@@ -130,6 +122,11 @@ export default {
   z-index: 9998;
 }
 
+
+/** 
+ * wrapper 
+ * 负责定位
+ */
 .alert-go-wrapper {
   position: fixed;
   top: 50%;
@@ -138,79 +135,104 @@ export default {
   z-index: 9999;
 
   box-shadow: 0px 2px 40px 0px rgba(0,0,0,0.40);
-  border-radius: 2px;
-
 }
 
+
+/** 
+ * body 
+ * 设置背景色，border-radius, padding
+ */
 .alert-go-body {
   min-width: 300px;
-  background:#fff;
+  background: #fff;
 }
 
+
+/** 
+ * header 头部
+ * 由「title」组成「关闭按钮」组成
+ */
 .alert-go-header {
-  display: flex;
-  justify-content: space-between;
+  & .alert-go-title {
+    font-size: 18px;
+    color: #656b79;
+    line-height: 20px;
+    border-bottom: 1px solid #ddd;
+
+    margin: 0;
+    padding: 0 0 14px 0;
+    width: 100%;
+  }
+
+  & .alert-go-close {
+    font-size: 24px;
+    color: #999999;
+
+    text-decoration: none;
+    position: absolute;
+    top: 5px;
+    right: 13px;
+  }
 }
 
-.alert-go-title {
-  font-size: 18px;
-  color: #656b79;
-  line-height: 20px;
-  border-bottom: 1px solid #ddd;
 
-  margin: 0;
-  padding: 0 0 10px 0;
-  width: 100%;
-}
-.alert-go-close {
-  font-size: 24px;
-  color: #999999;
-
-  text-decoration: none;
-  position: absolute;
-  top: 5px;
-  right: 13px;
-}
-
+/**
+ * 主要内容
+ * 由「图标」以及「消息」组成
+ */
 .alert-go-content {
   font-size: 16px;
   color: #313742;
   line-height: 16px;
+  padding: 10px 14px;
 
-  padding: 14px 14px 24px 14px;
+  & .alert-go-icon {
+    display: inline-block;
+    margin: 0 0 10px 0;
+  }
+
+  & .alert-go-msg {
+    margin: 14px 0;
+  }
 }
 
-.alert-go-icon {
-  display: inline-block;
-  margin: 0 0 24px 0;
-}
-.alert-go-msg {
-  margin: 0;
-}
 
+/**
+ * footer
+ * 由「Yes按钮」和「No按钮」组成
+ */
 .alert-go-footer {
-  padding: 0 14px 10px 14px;
   display: flex;
+  margin: 10px 0;
+  padding: 0 14px;
+
+  & .alert-go-btn {
+    display: inline-block;
+    text-decoration: none;
+    margin-right: 10px;
+    padding: 12px 30px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  & .alert-go-yes-btn {
+    background: #2bb56f;
+  }
+  & .alert-go-no-btn {
+    background: #999da7;
+  }
 }
 
-.alert-go-btn {
-  display: inline-block;
-  text-decoration: none;
-  padding: 10px 30px;
-  border-radius:2px;
-  color: #fff;
-  font-size: 14px;
-  text-align: center;
-}
-.alert-go-yes-btn {
-  background: #2bb56f;
-  margin-right: 10px;
-}
-.alert-go-no-btn {
-  background: #999da7
-}
 
-/* animations */
+/**
+ * 动画, transition
+ */
 .alert-go-container {
   opacity: 1;
 }

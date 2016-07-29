@@ -13,15 +13,20 @@ module.exports = (
     align: 'left',  // left, center, right
     autoCloseTimeout: 0, // auto close alert in mile second
     style: {
-      padding: '20px',
-      yesBtnColor: '',
-      background: '#fff',
+      box: {
+        padding: '24px 20px',
+        borderRadius: '2px',
+        bgColor: '#fff',
+      },
+      yesBtnBgColor: '',
+      textColor: '#000',
     },
     animate: 'fade',
     animateDuration: '0.2s',
 
     needNoBtn: false, // display no btn
-    needCloseBtn: true, // display close btn
+    needCloseBtn: false, // display close btn
+    needYesBtn: true,
     yesBtnText: 'YES',
     noBtnText: 'NO',
 

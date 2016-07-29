@@ -27,6 +27,7 @@
     "eslint-plugin-import": "^1.10.2",
     "file-loader": "^0.8.4",
     "json-loader": "^0.5.4",
+    "postcss-cssnext": "^2.7.0",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",

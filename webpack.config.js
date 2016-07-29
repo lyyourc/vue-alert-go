@@ -13,6 +13,14 @@ module.exports = {
   resolveLoader: {
     root: path.join(__dirname, 'node_modules'),
   },
+
+  vue: {
+    postcss: [
+      require('postcss-cssnext')(),
+    ],
+    autoprefixer: false,
+  },
+
   module: {
     loaders: [
       {
