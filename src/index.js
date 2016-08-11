@@ -34,8 +34,8 @@ module.exports = (
     needNoBtn: false, // display no btn
     needCloseBtn: false, // display close btn
     needYesBtn: true,
-    yesBtnText: 'YES',
-    noBtnText: 'NO',
+    yesBtnText: '确认',
+    noBtnText: '取消',
 
     onClickYesBtn: null, // yes btn click handler
     onClickNoBtn: null, // no btn click handler
