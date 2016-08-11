@@ -15,7 +15,7 @@ module.exports = (
     type: '', // [success, error]
     icon: '',
 
-    align: 'left',  // left, center, right
+    align: '',  // left, center, right
     autoCloseTimeout: 0, // auto close alert in mile second
     animate: 'fade', // animation type, [fade, bound, slide]
     animateDuration: '0.2s',

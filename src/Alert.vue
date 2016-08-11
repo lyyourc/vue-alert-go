@@ -3,9 +3,13 @@
     :style="{ transition: `all ${animateDuration} ease` }"
     :transition="animate">
     <div class="alert-go-wrapper"
-      :style="{ textAlign: align, transition: `all ${animateDuration} ease` }">
+      :style="{
+        textAlign: textAlign,
+        transition: `all ${animateDuration} ease`
+      }"
+    >
       <div class="alert-go-body"
-        :style="{ 
+        :style="{
           padding: box.padding,
           borderRadius: box.borderRadius,
           background: box.bgColor,
@@ -70,16 +74,24 @@ import { isFunction } from './utils/util'
 export default {
   data() {
     return {
-      $$destroyed: false, 
+      $$destroyed: false,
     }
   },
-  
+
   computed: {
     box() {
       return this.style.box
     },
     yesBtnFlex() {
       return this.needNoBtn ? 'none' : 1
+    },
+
+    textAlign() {
+      return this.align
+        ? this.align
+        : this.type === ''
+          ? 'left'
+          : 'center'
     },
 
     iconSrc() {
@@ -103,7 +115,7 @@ export default {
   methods: {
     destroyAlert() {
       const { cbWhenClose } = this
-      
+
       isFunction(cbWhenClose) && cbWhenClose()
       this.$destroy(true)
       this.$$destroyed = true
@@ -117,7 +129,7 @@ export default {
 
     clickYesBtn() {
       const { onClickYesBtn } = this
-  
+
       isFunction(onClickYesBtn) && onClickYesBtn()
       this.destroyAlert()
     },
@@ -133,7 +145,7 @@ export default {
   ready() {
     this.autoCloseAlert()
   },
-}  
+}
 </script>
 
 <style scoped>
@@ -165,21 +177,21 @@ export default {
 }
 
 
-/** 
- * wrapper 
+/**
+ * wrapper
  * 负责定位
  */
 .alert-go-wrapper {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
   z-index: 9999;
 }
 
 
-/** 
- * body 
+/**
+ * body
  * 设置背景色，border-radius, padding
  */
 .alert-go-body {
@@ -188,7 +200,7 @@ export default {
 }
 
 
-/** 
+/**
  * header 头部
  * 由「title」组成「关闭按钮」组成
  */

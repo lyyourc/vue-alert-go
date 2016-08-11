@@ -8,4 +8,6 @@ config.output = {
   publicPath: '/example/dist',
 }
 
+delete config.externals
+
 module.exports = config
