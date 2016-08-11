@@ -1,3 +1,13 @@
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/DrakeLeung/vue-alert-go/compare/v0.1.0...v0.1.1) (2016-08-11)
+
+
+### Features
+
+* **api:** update yes btn text '确定' instead of 'yes' ([c62c6e2](https://github.com/DrakeLeung/vue-alert-go/commit/c62c6e2))
+
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/DrakeLeung/vue-alert-go/compare/v0.0.6...v0.1.0) (2016-08-11)
 
