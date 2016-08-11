@@ -1,3 +1,13 @@
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/DrakeLeung/vue-alert-go/compare/v0.1.0...v0.1.2) (2016-08-11)
+
+
+### Features
+
+* **api:** 'msg' can be html not just text ([6cf7d98](https://github.com/DrakeLeung/vue-alert-go/commit/6cf7d98))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/DrakeLeung/vue-alert-go/compare/v0.1.0...v0.1.1) (2016-08-11)
 
