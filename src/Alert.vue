@@ -31,9 +31,10 @@
           <img alt="status icon" class="alert-go-icon"
             :src="iconSrc" v-show="iconSrc"
           >
-          <p class="alert-go-msg"
+          <div class="alert-go-msg"
             :style="{ color: style.textColor }"
-          > {{ msg }} </p>
+            v-html="msg"
+          ></div>
         </div>
         <!-- main content end -->
 
@@ -246,6 +247,7 @@ export default {
   & .alert-go-msg {
     margin: 14px 0;
     color: #656b78;
+    line-height: 1.5;
   }
 }
 
@@ -263,11 +265,12 @@ export default {
     display: inline-block;
     text-decoration: none;
     margin-right: 10px;
-    padding: 12px 30px;
+    padding: 4px 12px;
     border-radius: 2px;
     color: #fff;
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
+    line-height: 1.5;
 
     &:last-child {
       margin-right: 0;
